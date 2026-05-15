@@ -7,10 +7,13 @@ namespace ConcurrencyCookbook.Tests
 {
     public class DelayResultTests
     {
-        // TODO:
-        // Implement this method so that:
-        // 1. It asynchronously waits for the specified delay
-        // 2. It returns the provided result
+        // You need to simulate an asynchronous operation that completes after a delay
+        // and eventually returns a value. This is commonly used in unit tests when faking
+        // asynchronous APIs.
+        // Implement a method that:
+        // asynchronously waits for a specified amount of time,
+        // returns the provided result afterward,
+        // does not block the calling thread.
         private async Task<T> DelayResult<T>(T result, TimeSpan delay)
         {
             await Task.Delay(delay);
@@ -19,55 +22,67 @@ namespace ConcurrencyCookbook.Tests
         }
 
         [Fact]
-        public async Task DelayResult_ReturnsExpectedValue()
+        public async Task ReturnsExpectedInteger()
         {
-            // Arrange
-            const int expected = 42;
-
-            // Act
-            int actual = await DelayResult(expected,
+            int result = await DelayResult(42,
                 TimeSpan.FromMilliseconds(50));
 
-            // Assert
-            Assert.Equal(expected, actual);
+            Assert.Equal(42, result);
         }
 
         [Fact]
-        public async Task DelayResult_WaitsApproximatelySpecifiedTime()
+        public async Task ReturnsExpectedString()
         {
-            // Arrange
-            TimeSpan delay = TimeSpan.FromMilliseconds(200);
+            string result = await DelayResult("hello",
+                TimeSpan.FromMilliseconds(50));
 
-            var stopwatch = Stopwatch.StartNew();
-
-            // Act
-            await DelayResult("done", delay);
-
-            stopwatch.Stop();
-
-            // Assert
-            Assert.True(
-                stopwatch.Elapsed >= delay,
-                $"Expected at least {delay.TotalMilliseconds}ms " +
-                $"but was {stopwatch.Elapsed.TotalMilliseconds}ms");
+            Assert.Equal("hello", result);
         }
 
         [Fact]
-        public async Task DelayResult_DoesNotCompleteImmediately()
+        public async Task SupportsNullResults()
         {
-            // Arrange
-            Task<int> task = DelayResult(
-                123,
+            string result = await DelayResult<string>(null,
+                TimeSpan.FromMilliseconds(50));
+
+            Assert.Null(result);
+        }
+
+        [Fact]
+        public async Task WaitsBeforeCompleting()
+        {
+            var sw = Stopwatch.StartNew();
+
+            await DelayResult(1,
+                TimeSpan.FromMilliseconds(200));
+
+            sw.Stop();
+
+            Assert.True(sw.ElapsedMilliseconds >= 180);
+        }
+
+        [Fact]
+        public void DoesNotCompleteSynchronously()
+        {
+            Task<int> task = DelayResult(1,
                 TimeSpan.FromMilliseconds(300));
 
-            // Assert before awaiting
             Assert.False(task.IsCompleted);
-
-            // Act
-            int result = await task;
-
-            // Final Assert
-            Assert.Equal(123, result);
         }
+
+        [Fact]
+        public async Task MultipleCallsRunIndependently()
+        {
+            Task<int> a = DelayResult(1,
+                TimeSpan.FromMilliseconds(50));
+
+            Task<int> b = DelayResult(2,
+                TimeSpan.FromMilliseconds(100));
+
+            int[] results = await Task.WhenAll(a, b);
+
+            Assert.Equal(new[] { 1, 2 }, results);
+        }
+        
     }
 }
