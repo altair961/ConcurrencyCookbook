@@ -11,9 +11,11 @@ namespace ConcurrencyCookbook.Tests
         // Implement this method so that:
         // 1. It asynchronously waits for the specified delay
         // 2. It returns the provided result
-        private Task<T> DelayResult<T>(T result, TimeSpan delay)
+        private async Task<T> DelayResult<T>(T result, TimeSpan delay)
         {
-            throw new NotImplementedException();
+            await Task.Delay(delay);
+
+            return result;
         }
 
         [Fact]
