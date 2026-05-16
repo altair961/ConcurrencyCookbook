@@ -8,7 +8,7 @@ using Xunit;
 
 namespace ConcurrencyCookbook.Tests
 {
-    public class ImmediateCompletionForZeroDelay
+    public class ImmediateCompletionForZeroDelayTests
     {
         //A zero delay should complete immediately instead of
         //scheduling unnecessary asynchronous work.
