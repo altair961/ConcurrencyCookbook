@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32210.238
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Recipe_2_1_ResilientFileDownloader", "Recipe_2_1_ResilientFileDownloader\Recipe_2_1_ResilientFileDownloader.csproj", "{0C0CCE44-897A-4648-BCA9-EF297AB2F072}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Recipe_2_1_ResilientFileDownloader.Tests", "Recipe_2_1_ResilientFileDownloader.Tests\Recipe_2_1_ResilientFileDownloader.Tests.csproj", "{2F236589-DF30-4B96-9A7D-07E449A79FD3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0C0CCE44-897A-4648-BCA9-EF297AB2F072}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0C0CCE44-897A-4648-BCA9-EF297AB2F072}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0C0CCE44-897A-4648-BCA9-EF297AB2F072}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0C0CCE44-897A-4648-BCA9-EF297AB2F072}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2F236589-DF30-4B96-9A7D-07E449A79FD3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F236589-DF30-4B96-9A7D-07E449A79FD3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2F236589-DF30-4B96-9A7D-07E449A79FD3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2F236589-DF30-4B96-9A7D-07E449A79FD3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {98CD92B9-3B2C-4B39-AAE1-9E849ADDA127}
+	EndGlobalSection
+EndGlobal
